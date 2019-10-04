@@ -48,11 +48,7 @@ public class ProyectoPolinomios {
         Polvf2 Polfor2;
         int opcion;
 
-        int canterm;
-        canterm = Integer.parseInt(JOptionPane.showInputDialog("cuantos termino tiene el polinommio:"));
-        Polfor2=new Polvf2(canterm);
-        Polfor2.ingresarterminos(canterm);
-
+        Polfor2 = obtenerSegundoPolinomioF2();
         Polfor2.mostrar();
 
         do {
@@ -62,12 +58,20 @@ public class ProyectoPolinomios {
                     Polfor2.mostrar();
                     break;
                 case 2:
-
+                    float variableX = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el valor de x"));
+                    float resul = Polfor2.evaluar(variableX);
+                    JOptionPane.showMessageDialog(null, " al evaluar el polinomio con x = a (" + variableX + ") el resultado es " + resul);
                     break;
                 case 3:
-
+                    Polvf2 segundoPolinomioAsumar = obtenerSegundoPolinomioF2();
+                    Polvf2 sumaPolinomios = Polfor2.sumar(segundoPolinomioAsumar);
+                    segundoPolinomioAsumar.mostrar();
+                    sumaPolinomios.mostrar();
                     break;
                 case 4:
+                    Polvf2 segundoPolinomioAMultiplicar = obtenerSegundoPolinomioF2();
+                    Polvf2 multiplicacionPolinomio = Polfor2.multiplicar(segundoPolinomioAMultiplicar);
+                    multiplicacionPolinomio.mostrar();
                     break;
                 case 5:
                     break;
@@ -137,18 +141,18 @@ public class ProyectoPolinomios {
                     JOptionPane.showMessageDialog(null, " al evaluar el polinomio con x = a (" + variableX + ") el resultado es " + resul);
                     break;
                 case 3:
-                    Polvf1 segundoPolinomioAsumar = obtenerSegundoPolinomio(segundoPolinomio);
+                    Polvf1 segundoPolinomioAsumar = obtenerSegundoPolinomioF1(segundoPolinomio);
                     Polvf1 sumaPolinomios = primerPolinomio.sumar(segundoPolinomioAsumar);
                     segundoPolinomioAsumar.mostrar();
                     sumaPolinomios.mostrar();
                     break;
                 case 4:
-                    Polvf1 segundoPolinomioAMultiplicar = obtenerSegundoPolinomio(segundoPolinomio);
+                    Polvf1 segundoPolinomioAMultiplicar = obtenerSegundoPolinomioF1(segundoPolinomio);
                     Polvf1 multiplicacionPolinomio = primerPolinomio.multiplicar(segundoPolinomioAMultiplicar);
                     multiplicacionPolinomio.mostrar();
                     break;
                 case 5:
-                    Polvf1 segundoPolinomioADividir = obtenerSegundoPolinomio(segundoPolinomio);
+                    Polvf1 segundoPolinomioADividir = obtenerSegundoPolinomioF1(segundoPolinomio);
                     Polvf1 divisionPolinomio = primerPolinomio.dividir(segundoPolinomioADividir);
                     divisionPolinomio.mostrar();
                     break;
@@ -162,12 +166,19 @@ public class ProyectoPolinomios {
         } while (opcion != 0);
     }
 
-    private static Polvf1 obtenerSegundoPolinomio(Polvf1 segundoPolinomio) {
+    private static Polvf1 obtenerSegundoPolinomioF1(Polvf1 segundoPolinomio) {
         if (segundoPolinomio == null) {
             int grado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el grado del segundo polinomio"));
             segundoPolinomio = new Polvf1(grado);
             segundoPolinomio.insertarTermino();
         }
+        return segundoPolinomio;
+    }
+
+    private static Polvf2 obtenerSegundoPolinomioF2() {
+        int canterm = Integer.parseInt(JOptionPane.showInputDialog("cuantos termino tiene el polinommio:"));
+        Polvf2 segundoPolinomio = new Polvf2(canterm);
+        segundoPolinomio.ingresarterminos(canterm);
         return segundoPolinomio;
     }
 
